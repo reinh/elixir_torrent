@@ -29,7 +29,7 @@ defmodule Bencode do
   defp decode_int(<<?e, tail :: binary>>, acc), do: {to_int(acc), tail}
   defp decode_int(<< h, tail :: binary>>, acc), do: decode_int tail, [h|acc]
 
-  defp decode_list(<<?e, tail :: binary>>, acc), do: {:lists.reverse(acc), tail}
+  defp decode_list(<<?e, tail :: binary>>, acc), do: {Enum.reverse(acc), tail}
   defp decode_list(data, acc) do
     {head, tail} = decode data
     decode_list tail, [head|acc]
@@ -49,5 +49,5 @@ defmodule Bencode do
   end
   defp decode_str(<< h, tail :: binary>>, acc), do: decode_str tail, [h|acc]
 
-  defp to_int(list), do: list_to_integer :lists.reverse list
+  defp to_int(list), do: list_to_integer Enum.reverse list
 end
