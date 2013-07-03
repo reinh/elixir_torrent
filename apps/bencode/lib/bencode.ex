@@ -1,4 +1,7 @@
 defmodule Bencode do
+  # The type of Dict to use for decoded dictionaries.
+  @dict ListDict
+
   @moduledoc """
   This module provides <strike>encoding</strike> and decoding functionality for
   [Bencoded][] binary data.
@@ -20,7 +23,7 @@ defmodule Bencode do
   """
   def decode(<<?i, tail :: binary>>), do: decode_int  tail, []
   def decode(<<?l, tail :: binary>>), do: decode_list tail, []
-  def decode(<<?d, tail :: binary>>), do: decode_dict tail, Keyword.new
+  def decode(<<?d, tail :: binary>>), do: decode_dict tail, @dict.new
   def decode(data),                   do: decode_str  data, []
 
   defp decode_int(<<?e, tail :: binary>>, acc), do: {to_int(acc), tail}
@@ -32,11 +35,11 @@ defmodule Bencode do
     decode_list tail, [head|acc]
   end
 
-  defp decode_dict(<<?e, tail :: binary>>, acc), do: {:lists.reverse(acc), tail}
+  defp decode_dict(<<?e, tail :: binary>>, acc), do: {acc, tail}
   defp decode_dict(data, acc) do
     {key, tail} = decode data
     {value, _tail} = decode tail
-    decode_dict _tail, Keyword.put(acc, binary_to_atom(key), value)
+    decode_dict _tail, Dict.put(acc, binary_to_atom(key), value)
   end
 
   defp decode_str(<<?:, tail :: binary>>, acc) do

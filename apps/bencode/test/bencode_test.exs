@@ -19,9 +19,12 @@ defmodule BencodeTest do
   end
 
   test "decoding a dictionary" do
-    given = <<"d3:cow3:moo4:spam4:eggse">>
-    expected = [ cow: "moo", spam: "eggs" ]
-    assert Bencode.decode(given) == {expected, ""}
+    data = <<"d3:cow3:moo4:spam4:eggse">>
+    {given, tail} = Bencode.decode(data)
+    expected = ListDict.new([ cow: "moo", spam: "eggs" ])
+
+    assert Dict.equal?(expected, given)
+    assert tail == ""
   end
 
 end
