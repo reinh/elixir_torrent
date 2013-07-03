@@ -2,7 +2,7 @@ defmodule Bencode.Mixfile do
   use Mix.Project
 
   def project do
-    [ app: :bencode,
+    [ app: :core,
       version: "0.0.1",
       elixir: "~> 0.9.4-dev",
       deps: deps ]
