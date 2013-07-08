@@ -1,3 +1,6 @@
 [ "amrita": {:git,"git://github.com/josephwilk/amrita.git","e23108fda4f459467572bcbbb838bcf966da5eda",[]},
   "ex_doc": {:git,"git://github.com/elixir-lang/ex_doc.git","806da084a075ed4a3604951f1eb8ce3e86e85c43",[]},
-  "meck": {:git,"git://github.com/eproxus/meck.git","161e240166a0d20e9ffa2be5d0bfa6a981f12aef",[]} ]
+  "httpotion": {:git,"git://github.com/myfreeweb/httpotion.git","3d29dfc132497e25a7dc81dcb2699d58145ad575",[]},
+  "ibrowse": {:git,"git://github.com/cmullaparthi/ibrowse.git","208277b69fa9cc1b68f37d1261a77abe6487a677",[]},
+  "meck": {:git,"git://github.com/eproxus/meck.git","161e240166a0d20e9ffa2be5d0bfa6a981f12aef",[]},
+  "monad": {:git,"git://github.com/nickmeharry/elixir-monad.git","1fe473c726a6d67800cb0b2566d5171f26dc8964",[]} ]
